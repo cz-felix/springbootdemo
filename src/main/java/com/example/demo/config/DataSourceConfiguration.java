@@ -4,14 +4,13 @@ import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 
 /**
  * Created by chenzhi on 2017/9/7.
  */
 @Configuration
-//这个注解导入刚才增加的jdbc配置文件
-@PropertySource("classpath:prop.properties")
+//这个注解导入刚才增加的jdbc配置文件(使用了yml文件 则不需要了)
+/*@PropertySource("classpath:prop.properties")*/
 public class DataSourceConfiguration {
     @Value("${jdbc.driver}")
     private String driver;
