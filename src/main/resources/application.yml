@@ -1,10 +1,22 @@
 server:
-  port: 10022
-jdbc:
-  driver: com.mysql.jdbc.Driver
-  url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf8
-  username: root
-  password: 123456
-  maxActive: 2335
-  maxIdel: 120
-  maxWait: 100
+  port: 9090
+druid:
+  jdbc:
+    driveClassName: com.mysql.jdbc.Driver
+    filters: stat,wall
+    initialSize: 1
+    jdbcUrl: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf8
+    jdbcUsername: root
+    jdbcPassword: 123456
+    maxActive: 20
+    maxWait: 60000
+    minEvictableIdleTimeMillis: 300000
+    minIdle: 3
+    testOnBrowwon: false
+    testOnReturn: false
+    testWhileIdle: true
+    timeBetweenEvictionRunsMillis: 60000
+    validationQuery: SELECT 'x'
+mybatis:
+    mapperLocations: classpath:mapper/*.xml
+    type-aliases-package: com.example.demo.model

@@ -1,31 +1,19 @@
 package com.example.demo.config;
 
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.mybatis.spring.SqlSessionFactoryBean;
-import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
-import org.springframework.core.io.support.ResourcePatternResolver;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
-import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.transaction.annotation.TransactionManagementConfigurer;
-
-import javax.sql.DataSource;
-
 /**
  * Created by chenzhi on 2017/9/7.
  */
-@Configuration
+
+//使用prop.properties   需要使用这个类
+//@Configuration
 //加上这个注解，使得支持事务
-@EnableTransactionManagement
-public class MyBatisConfig implements TransactionManagementConfigurer {
-    @Autowired
+//@EnableTransactionManagement
+public class MyBatisConfig /*implements TransactionManagementConfigurer*/ {
+    /*@Autowired
     private DataSource dataSource;
 
     @Override
+    @Bean(name = "transactionManager")
     public PlatformTransactionManager annotationDrivenTransactionManager() {
         return new DataSourceTransactionManager(dataSource);
     }
@@ -39,7 +27,7 @@ public class MyBatisConfig implements TransactionManagementConfigurer {
         //添加XML目录
         ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
         try {
-            bean.setMapperLocations(resolver.getResources("classpath:mapper/*.xml"));//每张表对应的xml文件
+            bean.setMapperLocations(resolver.getResources("classpath:mapper*//*.xml"));//每张表对应的xml文件
             return bean.getObject();
         } catch (Exception e) {
             e.printStackTrace();
@@ -50,5 +38,5 @@ public class MyBatisConfig implements TransactionManagementConfigurer {
     @Bean
     public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) {
         return new SqlSessionTemplate(sqlSessionFactory);
-    }
+    }*/
 }
