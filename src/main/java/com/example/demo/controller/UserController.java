@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.User;
+import com.example.demo.service.ActivitiUtil;
 import com.example.demo.service.UserService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,8 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private ActivitiUtil activitiUtil;
 
     @RequestMapping("/getUserInfo")
     public User getUserInfo() {
@@ -25,6 +28,9 @@ public class UserController {
         if(user!=null){
             System.out.println("user.getName():"+user.getName());
             logger.info("user.getAge():"+user.getAge());
+
+           /* activitiUtil.model_create();*/
+            activitiUtil.contextLoads();
         }
         return user;
     }

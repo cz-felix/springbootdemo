@@ -63,7 +63,7 @@ public class DataSourceConfiguration {
     @Value("${druid.jdbc.testOnReturn}")
     private boolean testOnReturn;
 
-    @Bean
+    @Bean(name = "dataSource")
     public DataSource dataSource() {
 
         System.out.println(this.driveClassName);
