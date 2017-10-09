@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Created by chenzhi on 2017/9/7.
@@ -23,15 +24,17 @@ public class UserController {
     private ActivitiUtil activitiUtil;
 
     @RequestMapping("/getUserInfo")
-    public User getUserInfo() {
-        User user = userService.getUserInfo();
+    public ModelAndView getUserInfo() {
+       /* User user = userService.getUserInfo();
         if(user!=null){
             System.out.println("user.getName():"+user.getName());
-            logger.info("user.getAge():"+user.getAge());
+            logger.info("user.getEmail():"+user.getEmail());
 
-           /* activitiUtil.model_create();*/
+           *//* activitiUtil.model_create();*//*
             activitiUtil.contextLoads();
-        }
-        return user;
+        }*/
+        ModelAndView model = new ModelAndView("index");
+        model.addObject("index","1111");
+        return model;
     }
 }

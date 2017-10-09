@@ -3,7 +3,7 @@
 <mapper namespace="com.example.demo.dao.UserDao">
 
     <select id="findUserInfo" resultType="com.example.demo.model.User">
-        select name, age,password from user;
+        select CONCAT(FIRST_,LAST_) as name,EMAIL_ as email,PWD_ as password from act_id_user
     </select>
 
 </mapper>

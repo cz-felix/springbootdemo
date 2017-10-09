@@ -20,3 +20,6 @@ druid:
 mybatis:
     mapperLocations: classpath:mapper/*.xml
     type-aliases-package: com.example.demo.model
+spring:
+    thymeleaf:
+         cache: false
