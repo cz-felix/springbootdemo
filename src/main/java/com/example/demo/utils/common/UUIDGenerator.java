@@ -12,4 +12,8 @@ public class UUIDGenerator implements IdGenerator {
     public String getNextId() {
         return UUID.randomUUID().toString().replace("-", "");
     }
+
+    public static String uuid() {
+        return UUID.randomUUID().toString().replaceAll("-", "");
+    }
 }
