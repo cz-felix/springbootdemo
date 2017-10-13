@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.*;
 import java.io.InputStream;
 
 /**
- * @author donghuan
- * @create 2017-08-02 10:45
+ * @author chenzhi
+ * @create 2017-09-20 10:45
  **/
 @RestController
 public class ActDesingnerController {

@@ -5,25 +5,28 @@
     <meta http-equiv="Content-Type" content="application/msword; charset=UTF-8">
     <title>Activiti Demo系统</title>
     <link rel="stylesheet" href="/layui/css/layui.css"/>
+    <style>
+        .layui-table-body .layui-table,.layui-table-header .layui-table{width: 100%;}
+        .layui-table-body.layui-table-main .layui-table-cell,.layui-table-header .layui-table-cell{white-space: pre-wrap;word-wrap: break-word; word-break: break-all; height: auto;}
+    </style>
 </head>
 <body class="layui-layout-body">
     <div class="layui-tab-content">
         <div class="layui-tab-item layui-show">
 
-            <table class="layui-table" lay-data="{width:1108,url:'${ctx}/workspace/getToDoList', page:true , id:'idTest'}" lay-filter="demo">
+            <table class="layui-table" lay-data="{url:'${ctx}/workspace/getToDoList', page:true ,limits:[10,30,60],limit: 10,id:'idTest'}" lay-filter="demo">
                 <thead>
                 <tr>
-                    <th lay-data="{field:'id', width:80, sort: true, fixed: true}">ID</th>
-                    <th lay-data="{field:'username', width:100}">用户名</th>
-                    <th lay-data="{field:'sex', width:80, sort: true}">性别</th>
-                    <th lay-data="{field:'city', width:100}">城市</th>
-                    <th lay-data="{field:'sign', width:177}">签名</th>
-                    <th lay-data="{field:'experience', width:85, sort: true}">积分</th>
-
-                    <th lay-data="{field:'classify', width:80}">职业</th>
-                    <th lay-data="{field:'wealth', width:135, sort: true}">财富</th>
-                    <th lay-data="{field:'score', width:80, sort: true, fixed: 'right'}">评分</th>
-                    <th lay-data="{fixed: 'right', width:180, align:'center', toolbar: '#barDemo'}">操作</th>
+                    <th lay-data="{field:'id', width:'auto', sort: true,styles:'width:8%'}">ID</th>
+                    <th lay-data="{field:'username', width:'auto',styles:'width:10%'}">用户名</th>
+                    <th lay-data="{field:'sex', width:'auto',styles:'width:10%', sort: true}">性别</th>
+                    <th lay-data="{field:'city', width:'auto',styles:'width:10%'}">城市</th>
+                    <th lay-data="{field:'sign', width:'auto',styles:'width:10%'}">签名</th>
+                    <th lay-data="{field:'experience', width:'auto',styles:'width:10%', sort: true}">积分</th>
+                    <th lay-data="{field:'classify', width:'auto',styles:'width:10%'}">职业</th>
+                    <th lay-data="{field:'wealth', width:'auto',styles:'width:10%', sort: true}">财富</th>
+                    <th lay-data="{field:'score', width:'auto',styles:'width:10%', sort: true, fixed: 'right'}">评分</th>
+                    <th lay-data="{fixed: 'right', width:'auto',styles:'width:12%', align:'center', toolbar: '#barDemo'}">操作</th>
                 </tr>
                 </thead>
             </table>
@@ -84,6 +87,10 @@
                         }
                     });
                 }
+            });
+
+            table.render({ //其它参数在此省略
+
             });
         });
     </script>
