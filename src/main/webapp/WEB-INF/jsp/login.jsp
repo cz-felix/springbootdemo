@@ -4,13 +4,13 @@
 <head>
     <meta http-equiv="Content-Type" content="application/msword; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-    <title>SpringBoot+Activiti+layUI</title>
+    <title>Activiti Demo系统</title>
     <link rel="stylesheet" href="/layui/css/layui.css"/>
     <style>
         body{margin: 10px;}
         .demo-carousel{height: 200px; line-height: 200px; text-align: center;}
         .form-item{padding-top: 10px;text-align: center;}
-        .bottom-blockquote{position:absolute; width:76%; bottom:0; margin-left: 10%;border-color:#009688}
+        .bottom-blockquote{position:absolute; width:76%; bottom:0; text-align:center;margin-left: 10%;border-color:#009688}
         .layui-elem-field legend {margin-left: 50%;}
     </style>
 </head>
@@ -52,14 +52,14 @@
         </div>
     </div>
 </form>
-<blockquote class="layui-elem-quote layui-quote-nm bottom-blockquote">搞着玩玩哈哈</blockquote>
+<blockquote class="layui-elem-quote layui-quote-nm bottom-blockquote">
+    <p style="line-height:44px;text-align:center;">Activiti Demo系统 -- Design By Cz丶冷颜</p>
+</blockquote>
 <script src="/layui/layui.js"></script>
 <script>
     //JavaScript代码区域
-    layui.use(['jquery','carousel', 'element','form'], function(){
-        var form = layui.form,layer = layui.layer,$ = layui.$;
-        //轮播图
-        var carousel = layui.carousel;
+    layui.use(['jquery','carousel', 'element','form','util'], function(){
+        var form = layui.form,layer = layui.layer,$ = layui.$,carousel = layui.carousel,util = layui.util;
         carousel.render({
             elem: '#login-carousel'
             ,width: '80%' //设置容器宽度
