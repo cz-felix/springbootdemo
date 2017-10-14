@@ -29,7 +29,7 @@ public class UserInterceptor implements HandlerInterceptor {
         //System.out.println("开始preHandle,判断请求是否需要拦截");
         boolean flag = false;
         String servletPath = request.getServletPath();
-        System.out.println("请求路径是: "+servletPath);
+        //System.out.println("请求路径是: "+servletPath);
         // 检测是否为需要拦截的请求
         for (String s : Constant.IGNORE_URI) {
             if (servletPath.contains(s)) {
