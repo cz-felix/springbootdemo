@@ -6,23 +6,21 @@ import com.example.demo.utils.common.Constant;
 import com.example.demo.utils.common.CookieUtils;
 import com.example.demo.utils.common.Result;
 import com.example.demo.utils.common.UserUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.ws.Action;
 
 /**
  * Created by chenzhi on 2017/10/9 0009.
  */
 @RestController
-public class LoginController {
-
+public class LoginController{
     @Autowired
     private UserService userService;
 
@@ -57,6 +55,5 @@ public class LoginController {
         model.addObject("user",user);
         return model;
     }
-
 
 }

@@ -1,12 +1,4 @@
-﻿/*
-
-@Name：不落阁后台模板源码 
-@Author：Absolutely 
-@Site：http://www.lyblogs.cn
-
-*/
-
-layui.define(['laypage', 'layer', 'form', 'pagesize'], function (exports) {
+﻿layui.define(['laypage', 'layer', 'form', 'pagesize'], function (exports) {
     var $ = layui.jquery,
         layer = layui.layer,
         form = layui.form(),

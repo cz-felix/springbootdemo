@@ -16,6 +16,7 @@
     <link href="/css/animate.min.css" rel="stylesheet" />
     <!-- 本页样式 -->
     <link href="/css/main.css" rel="stylesheet" />
+
 </head>
 <body>
 <div class="layui-layout layui-layout-admin">
@@ -48,7 +49,7 @@
                 tpwidget("show");</script>
             </div>
         </div>
-        <ul class="ht-nav layui-nav">
+        <ul class="ht-nav layui-nav" lay-filter="nav">
             <li class="ht-nav-item">
                 <a href="javascript:;" id="individuation"><i class="fa fa-tasks fa-fw" style="padding-right:5px;"></i>个性化</a>
             </li>
@@ -58,20 +59,19 @@
                     <cite>${user.name}</cite>
                 </a>
                 <dl class="layui-nav-child">
-                    <dd><a href="javascript:;" data-url="page/user/userInfo.html"><i class="iconfont icon-zhanghu" data-icon="icon-zhanghu"></i><cite>个人资料</cite></a></dd>
-                    <dd><a href="javascript:;" data-url="page/user/changePwd.html"><i class="iconfont icon-shezhi1" data-icon="icon-shezhi1"></i><cite>修改密码</cite></a></dd>
-                    <dd><a href="page/login/login.html" class="signOut"><i class="iconfont icon-loginout"></i><cite>退出</cite></a></dd>
+                    <dd><a href="javascript:;" data-id="10" data-url="page/user/userInfo.html"><i class="iconfont icon-zhanghu" data-icon="icon-zhanghu"></i><cite>个人资料</cite></a></dd>
+                    <dd><a href="javascript:;" data-id="11" data-url="page/user/changePwd.html"><i class="iconfont icon-shezhi1" data-icon="icon-shezhi1"></i><cite>修改密码</cite></a></dd>
                 </dl>
             </li>
-            <%--<li class="ht-nav-item">
+            <li class="ht-nav-item">
                 <a href="${ctx}/logout"><i class="fa fa-power-off fa-fw"></i>注销</a>
-            </li>--%>
+            </li>
         </ul>
     </div>
     <!--侧边导航-->
     <div class="layui-side">
         <div class="layui-side-scroll">
-            <ul class="layui-nav layui-nav-tree" lay-filter="leftnav">
+            <ul class="layui-nav layui-nav-tree" lay-filter="nav">
                 <li class="layui-nav-item layui-this">
                     <a href="javascript:;" data-id="0"><i class="fa fa-home"></i>首页</a>
                 </li>
@@ -166,7 +166,7 @@
     </div>
     <!--底部信息-->
     <div class="layui-footer">
-        <p style="line-height:44px;text-align:center;">不落阁后台管理系统 - Design By LY</p>
+        <p style="line-height:44px;text-align:center;">Activiti Demo系统 - Design By Cz丶冷颜</p>
     </div>
     <!--个性化设置-->
     <div class="individuation animated flipOutY layui-hide">
@@ -203,6 +203,8 @@
     layui.config({
         base: '/js/'
     }).use('main');
+
+
 </script>
 </body>
 </html>

@@ -1,12 +1,4 @@
-﻿/*
-
-@Name：不落阁后台模板源码 
-@Author：Absolutely 
-@Site：http://www.lyblogs.cn
-
-*/
-
-layui.define(['element', 'layer', 'util', 'pagesize', 'form'], function (exports) {
+﻿layui.define(['element', 'layer', 'util', 'pagesize', 'form'], function (exports) {
     var $ = layui.jquery;
     var element = layui.element;
     var layer = layui.layer;
@@ -25,8 +17,8 @@ layui.define(['element', 'layer', 'util', 'pagesize', 'form'], function (exports
         $('.individuation').removeClass('bounceInRight').addClass('flipOutY');
     });
 
-    //监听左侧导航点击
-    element.on('nav(leftnav)', function (elem) {
+    //监听左侧以及个人资料的导航点击
+    element.on('nav(nav)', function (elem) {
         var url = $(elem).children('a').attr('data-url');   //页面url
         var id = $(elem).children('a').attr('data-id');     //tab唯一Id
         var title = $(elem).children('a').text();           //菜单名称
