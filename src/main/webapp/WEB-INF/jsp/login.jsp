@@ -79,7 +79,7 @@
                     if(result.retCode == 1){
                         layer.close(loading);
                         layer.msg("登录成功");
-                        window.location.href="/index";
+                        window.location.href="/main";
                     }else{
                         layer.close(loading);
                         layer.msg(result.errMsg);

@@ -50,10 +50,10 @@ public class LoginController {
         return model;
     }
 
-    @RequestMapping("/index")
+    @RequestMapping("/main")
     public ModelAndView index(HttpServletRequest request){
         User user = UserUtils.getLoginUser(request);
-        ModelAndView model = new ModelAndView("index");
+        ModelAndView model = new ModelAndView("main");
         model.addObject("user",user);
         return model;
     }

@@ -23,7 +23,7 @@
     <div class="layui-header">
         <div class="ht-console">
             <div class="ht-user">
-                <a class="ht-user-name"> <img src="/images/Logo_40.jpg" />&nbsp;&nbsp;${user.name}</a>
+                <a class="ht-user-name" href="/main"><span class="sys-title">Activiti Demo系统</span></a>
             </div>
         </div>
         <div class="ht-console">
@@ -48,15 +48,24 @@
                 tpwidget("show");</script>
             </div>
         </div>
-
-        <span class="sys-title">Activiti Demo系统</span>
-        <ul class="ht-nav">
+        <ul class="ht-nav layui-nav">
             <li class="ht-nav-item">
                 <a href="javascript:;" id="individuation"><i class="fa fa-tasks fa-fw" style="padding-right:5px;"></i>个性化</a>
             </li>
-            <li class="ht-nav-item">
-                <a href="${ctx}/logout"><i class="fa fa-power-off fa-fw"></i>注销</a>
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    <img src="/images/Logo_40.jpg" class="layui-circle" width="35" height="35">
+                    <cite>${user.name}</cite>
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="javascript:;" data-url="page/user/userInfo.html"><i class="iconfont icon-zhanghu" data-icon="icon-zhanghu"></i><cite>个人资料</cite></a></dd>
+                    <dd><a href="javascript:;" data-url="page/user/changePwd.html"><i class="iconfont icon-shezhi1" data-icon="icon-shezhi1"></i><cite>修改密码</cite></a></dd>
+                    <dd><a href="page/login/login.html" class="signOut"><i class="iconfont icon-loginout"></i><cite>退出</cite></a></dd>
+                </dl>
             </li>
+            <%--<li class="ht-nav-item">
+                <a href="${ctx}/logout"><i class="fa fa-power-off fa-fw"></i>注销</a>
+            </li>--%>
         </ul>
     </div>
     <!--侧边导航-->

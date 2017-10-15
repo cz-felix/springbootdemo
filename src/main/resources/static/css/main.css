@@ -68,12 +68,11 @@ body {
 
 .sys-title {
     display: inline-block;
-    line-height: 60px;
-    margin-left: -250px;
+    margin-top: 5px;
+    margin-left: -50px;
     color: #00F7DE;
     text-shadow: 0 0 8px #1E9FFF,0 0 8px #009688;
-    font-size: 26px;
-    letter-spacing: 6px;
+    font-size: 20px;
     cursor: pointer;
 }
 
