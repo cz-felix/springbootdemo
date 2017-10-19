@@ -31,7 +31,7 @@
                     <th lay-data="{field:'experience', width:'auto',styles:'width:8%', sort: true}">积分</th>
                     <th lay-data="{field:'classify', width:'auto',styles:'width:10%'}">职业</th>
                     <th lay-data="{field:'wealth', width:'auto',styles:'width:10%', sort: true}">财富</th>
-                    <th lay-data="{field:'score', width:'auto',styles:'width:8%', sort: true, fixed: 'right'}">评分</th>
+                    <th lay-data="{field:'score', width:'auto',styles:'width:8%', sort: true}">评分</th>
                     <th lay-data="{fixed: 'right', width:'auto',styles:'width:18%', align:'center', toolbar: '#barDemo'}">操作</th>
                 </tr>
                 </thead>

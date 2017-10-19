@@ -96,10 +96,9 @@
                 <li class="layui-nav-item">
                     <a href="javascript:;"><i class="fa fa-wrench"></i>系统工具</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:;" data-url="datalist.html" data-id="5">用户列表</a></dd>
-                        <dd><a href="javascript:;" data-url="datalist.html" data-id="6">系统菜单</a></dd>
+                        <dd><a href="javascript:;" data-url="datalist.html" data-id="5">用户管理</a></dd>
+                        <dd><a href="javascript:;" data-url="datalist.html" data-id="6">资源管理</a></dd>
                         <dd><a href="javascript:;" data-url="datalist.html" data-id="7">角色管理</a></dd>
-                        <dd><a href="javascript:;" data-url="datalist.html" data-id="8">用户角色</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">

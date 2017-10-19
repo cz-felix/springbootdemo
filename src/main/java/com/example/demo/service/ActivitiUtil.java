@@ -1,9 +1,16 @@
 package com.example.demo.service;
 
+import com.example.demo.model.ActInBean;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import javafx.scene.control.Pagination;
 import org.activiti.engine.*;
 import org.activiti.engine.repository.Model;
+import org.activiti.engine.task.Task;
+import org.activiti.engine.task.TaskQuery;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -91,5 +98,33 @@ public class ActivitiUtil {
             throw new RuntimeException(e);
         }
         return model.getId();
+    }
+
+
+    /**
+     * 代办理任务列表
+     * @param actInBean
+     * @return
+     */
+    public PageInfo<Task> task_todoList(ActInBean actInBean){
+        TaskQuery taskQuery = taskService.createTaskQuery();
+
+        List<String> userRoleList = actInBean.getUserRoles();
+        if(userRoleList == null || userRoleList.size() == 0){
+            /*throw new RuntimeException("");*/
+        }else{
+            taskQuery.taskCandidateGroupIn(userRoleList);
+        }
+
+        String userName = actInBean.getUserId();
+        if(StringUtils.isNotEmpty(userName)){
+            taskQuery.taskAssignee(userName);
+        }
+        if(actInBean.getPage() > 0 && actInBean.getLimit()> 0){
+            PageHelper.startPage(actInBean.getPage(), actInBean.getLimit());
+        }
+        List<Task> taskList = taskQuery.list();
+        PageInfo<Task> pageInfo = new PageInfo(taskList);
+        return pageInfo;
     }
 }
