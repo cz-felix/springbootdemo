@@ -27,13 +27,13 @@
 <fieldset class="layui-elem-field layui-field-title" style="margin-left:14%;margin-top: 20px;text-align: center;width: 74%">
     <legend>登录</legend>
 </fieldset>
-<form class="layui-form" style="text-align: center" action="" method="post">
+<form class="layui-form" style="text-align: center" action="" method="POST">
     <div class="form-item">
         <div class="layui-input-inline">
-            <label class="layui-form-label">邮箱：</label>
+            <label class="layui-form-label">用户名：</label>
         </div>
         <div class="layui-input-inline">
-            <input type="text" name="email" lay-verify="required|email" style="width: 250px"  placeholder="请输入邮箱" autocomplete="off" class="layui-input">
+            <input type="text" name="username" lay-verify="required" style="width: 250px"  placeholder="请输入用户名" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="form-item">
@@ -41,7 +41,7 @@
             <label class="layui-form-label">密码：</label>
         </div>
         <div class="layui-input-inline">
-            <input type="password" name="password" lay-verify="required|apssword" style="width: 250px" placeholder="请输入密码" autocomplete="off" class="layui-input">
+            <input type="password" name="pwd" lay-verify="required|password" style="width: 250px" placeholder="请输入密码" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="form-item">
@@ -76,10 +76,11 @@
                 data:data.field,
                 dataType:"json",
                 success:function(result){
+                    debugger;
                     if(result.retCode == 1){
                         layer.close(loading);
                         layer.msg("登录成功");
-                        window.location.href="/main";
+                        window.location.href="${ctx}/main";
                     }else{
                         layer.close(loading);
                         layer.msg(result.errMsg);

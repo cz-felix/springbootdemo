@@ -56,11 +56,11 @@
             <li class="layui-nav-item">
                 <a href="javascript:;">
                     <img src="/images/Logo_40.jpg" class="layui-circle" width="35" height="35">
-                    <cite>${user.name}</cite>
+                    <cite style="color: #FFF">陈志</cite>
                 </a>
                 <dl class="layui-nav-child">
-                    <dd><a href="javascript:;" data-id="10" data-url="page/user/userInfo.html"><i class="iconfont icon-zhanghu" data-icon="icon-zhanghu"></i><cite>个人资料</cite></a></dd>
-                    <dd><a href="javascript:;" data-id="11" data-url="page/user/changePwd.html"><i class="iconfont icon-shezhi1" data-icon="icon-shezhi1"></i><cite>修改密码</cite></a></dd>
+                    <dd><a href="javascript:;" data-id="10" data-url="page/user/userInfo.html"><i class="iconfont icon-zhanghu" data-icon="icon-zhanghu"></i><cite style="color: #0C0C0C">个人资料</cite></a></dd>
+                    <dd><a href="javascript:;" data-id="11" data-url="page/user/changePwd.html"><i class="iconfont icon-shezhi1" data-icon="icon-shezhi1"></i><cite style="color: #0C0C0C">修改密码</cite></a></dd>
                 </dl>
             </li>
             <li class="ht-nav-item">
@@ -78,7 +78,9 @@
                 <li class="layui-nav-item">
                     <a href="javascript:;"><i class="fa fa-tasks"></i>工作台</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:;" data-url="${ctx}/workspace/toDoList" data-id="1">待办列表</a></dd>
+                        <shiro:hasPermission name="workspace/toDoList">
+                            <dd><a href="javascript:;" data-url="${ctx}/workspace/toDoList" data-id="1">待办列表</a></dd>
+                        </shiro:hasPermission>
                         <dd><a href="javascript:;" data-url="datalist.html" data-id="2">已审列表</a></dd>
                         <dd><a href="javascript:;" data-url="datalist.html" data-id="3">发起列表</a></dd>
                     </dl>
@@ -91,13 +93,14 @@
                     <dl class="layui-nav-child">
                         <dd><a href="javascript:;">模型管理</a></dd>
                         <dd><a href="javascript:;">流程定义</a></dd>
+                        <dd><a href="${ctx}/modeler.html?id=dasdasd">流程设计</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
                     <a href="javascript:;"><i class="fa fa-wrench"></i>系统工具</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:;" data-url="datalist.html" data-id="5">用户管理</a></dd>
-                        <dd><a href="javascript:;" data-url="datalist.html" data-id="6">资源管理</a></dd>
+                        <dd><a href="javascript:;" data-url="${ctx}/user/toUser" data-id="5">用户管理</a></dd>
+                        <dd><a href="javascript:;" data-url="${ctx}/resources/toResources" data-id="6">资源管理</a></dd>
                         <dd><a href="javascript:;" data-url="datalist.html" data-id="7">角色管理</a></dd>
                     </dl>
                 </li>

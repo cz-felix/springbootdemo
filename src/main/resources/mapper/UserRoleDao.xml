@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.dao.sys.UserRoleDao">
+
+    <!--返回实体对象-->
+    <sql id="columns">
+        ur.user_id as "userId",
+        ur.role_id as "roleId"
+    </sql>
+
+    <sql id="joins">
+    </sql>
+
+    <!-- 插入数据-->
+    <insert id="insert" parameterType="UserRole">
+        insert into sys_user_role (user_id,role_id)
+        values (#{userId,jdbcType=VARCHAR}, #{roleId,jdbcType=VARCHAR})
+    </insert>
+
+    <!--删除-->
+    <delete id="deleteByUserId" parameterType="java.lang.String">
+        DELETE from sys_user_role where user_id = #{userId,jdbcType=VARCHAR}
+    </delete>
+
+</mapper>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.dao.sys.ResourcesDao">
+
+    <!--返回实体对象-->
+    <sql id="columns">
+        r.id as "id",
+        r.res_url as "resUrl",
+        r.name as "name",
+        r.type as "type",
+        r.parent_id AS "parentId",
+        r.sort AS "sort"
+    </sql>
+
+    <sql id="joins">
+        LEFT JOIN sys_role_resources rr ON r.id = rr.resources_Id
+        LEFT JOIN sys_user_role ur ON rr.role_Id =ur.role_Id
+    </sql>
+
+    <!-- 插入数据-->
+    <insert id="insert" parameterType="Resources">
+        insert into sys_resources (id,res_url,`name`,`type`,parent_id,sort)
+        values (#{id,jdbcType=VARCHAR}, #{resUrl,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR},#{type,jdbcType=VARCHAR},#{parentId,jdbcType=VARCHAR},#{sort,jdbcType=VARCHAR})
+    </insert>
+
+    <!--修改资源信息-->
+    <update id="update" parameterType="Resources">
+        update sys_resources
+        set res_url = #{resUrl,jdbcType=VARCHAR},
+        `name` = #{name,jdbcType=VARCHAR},
+        `type` = #{type,jdbcType=VARCHAR},
+        parent_id = #{parentId,jdbcType=VARCHAR},
+        sort = #{sort,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+
+    <!--删除资源-->
+    <delete id="delete" parameterType="java.lang.String">
+        DELETE from sys_resources where id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+    <!--查询资源信息-->
+    <select id="get" parameterType="java.lang.String" resultType="Resources">
+        SELECT <include refid="columns"/> FROM sys_resources r
+        WHERE  r.id = #{id,jdbcType=VARCHAR}
+    </select>
+
+    <!--查询所有资源列表-->
+    <select id="select" parameterType="Resources" resultType="Resources">
+        SELECT <include refid="columns"/> FROM sys_resources r
+        WHERE 1 = 1
+        <if test="resUrl != null and resUrl != ''">
+            and res_url LIKE CONCAT('%',#{resUrl,jdbcType=VARCHAR}, '%')
+        </if>
+        <if test="name != null and name != ''">
+            and `name` LIKE CONCAT('%',#{name,jdbcType=VARCHAR}, '%')
+        </if>
+        <if test="type != null and type != ''">
+            and `type` = #{type,jdbcType=VARCHAR}
+        </if>
+        ORDER BY sort ASC
+    </select>
+
+    <!-- 查询用户拥有的资源-->
+    <select id="loadUserResources" parameterType="java.util.HashMap" resultType="Resources">
+        SELECT <include refid="columns"/> FROM sys_resources r
+        <include refid="joins" />
+        WHERE ur.user_id=#{userId,jdbcType=VARCHAR}
+        <if test="type != null and type != ''">
+            AND r.type= #{type,jdbcType=VARCHAR}
+        </if>
+        ORDER BY r.sort ASC
+    </select>
+
+    <!--查询角色是否选中的资源-->
+    <select id="queryResourcesListWithSelected" parameterType="java.lang.String" resultType="Resources">
+        SELECT <include refid="columns"/>,
+        (CASE WHEN EXISTS(SELECT 1
+        FROM sys_role_resources rr WHERE rr.resources_id = r.id AND rr.role_id = #{roleId,jdbcType=VARCHAR})
+        THEN 'true' ELSE 'false' END) AS checked
+        FROM resources r
+        WHERE r.parentId != 0
+        ORDER BY r.sort ASC
+    </select>
+</mapper>

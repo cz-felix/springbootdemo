@@ -22,12 +22,12 @@ druid:
     validationQuery: SELECT 'x'
 mybatis:
     mapperLocations: classpath:mapper/*.xml
-    type-aliases-package: com.example.demo.model
+    type-aliases-package: com.demo.model
 spring:
   redis:
     host: 127.0.0.1
     port: 6379
-    timeout: 100
+    timeout: 0
     pool:
       max-active: 20
       max-wait: 10001
