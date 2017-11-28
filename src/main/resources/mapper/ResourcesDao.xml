@@ -9,7 +9,8 @@
         r.name as "name",
         r.type as "type",
         r.parent_id AS "parentId",
-        r.sort AS "sort"
+        r.sort AS "sort",
+        case when r.name = '2' then '按钮' else '菜单' end AS "typeName"
     </sql>
 
     <sql id="joins">

@@ -5,9 +5,10 @@ import com.demo.model.sys.Role;
 import com.demo.model.sys.RoleResources;
 import com.demo.service.sys.RoleResourcesService;
 import com.demo.service.sys.RoleService;
+import com.demo.utils.common.PageEntity;
 import com.github.pagehelper.PageInfo;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,20 +37,36 @@ public class RoleController {
     }
 
     @RequestMapping("/getRoleList")
-    public Map<String,Object> getRoleList(@RequestParam(value = "page",defaultValue = "1") Integer page,
-                                               @RequestParam(value = "limit",defaultValue = "10") Integer limit, Role role){
-        PageInfo pageInfo = roleService.findPage(page,limit,role);
-        Map<String,Object> result = new HashMap<String,Object>();
-        result.put("code",0);
-        result.put("msg","");
-        result.put("count",pageInfo.getTotal());
-        result.put("data",pageInfo.getList());
-        return result;
+    public PageEntity getRoleList(@RequestParam(value = "page",defaultValue = "1") Integer page,
+                                  @RequestParam(value = "limit",defaultValue = "10") Integer limit, Role role){
+
+        PageEntity pageEntity = new PageEntity();
+        try {
+            PageInfo pageInfo = roleService.findPage(page,limit,role);
+            pageEntity.setCount(pageInfo.getTotal());
+            pageEntity.setData(pageInfo.getList());
+        }catch (Exception e){
+            e.printStackTrace();
+            pageEntity.setCode(PageEntity.CODE_ERROR);
+            pageEntity.setMsg("获取角色列表出错！");
+        }
+        return pageEntity;
     }
 
     @RequestMapping("/rolesWithSelected")
     public List<Role> rolesWithSelected(String userId){
         return roleService.queryRoleListWithSelected(userId);
+    }
+
+    @RequestMapping("/toRole")
+    public ModelAndView toRole(@RequestParam(value = "id",required = false) String id) {
+        ModelAndView model = new ModelAndView("sys/role");
+        Role role = new Role();
+        if(StringUtils.isNotEmpty(id)){
+            role = roleService.get(id);
+        }
+        model.addObject("role",role);
+        return model;
     }
 
     //分配角色

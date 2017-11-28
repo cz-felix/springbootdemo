@@ -55,9 +55,11 @@ public class LoginController{
         return result;
     }
 
-    @RequestMapping("/main")
+    @RequestMapping(value={"/main",""})
     public ModelAndView index(HttpServletRequest request){
         ModelAndView model = new ModelAndView("main");
+        User user= (User) SecurityUtils.getSubject().getPrincipal();
+        model.addObject("user",user);
         return model;
     }
 

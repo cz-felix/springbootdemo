@@ -56,7 +56,7 @@
             <li class="layui-nav-item">
                 <a href="javascript:;">
                     <img src="/images/Logo_40.jpg" class="layui-circle" width="35" height="35">
-                    <cite style="color: #FFF">陈志</cite>
+                    <cite style="color: #FFF">${user.nickname}</cite>
                 </a>
                 <dl class="layui-nav-child">
                     <dd><a href="javascript:;" data-id="10" data-url="page/user/userInfo.html"><i class="iconfont icon-zhanghu" data-icon="icon-zhanghu"></i><cite style="color: #0C0C0C">个人资料</cite></a></dd>
@@ -99,9 +99,9 @@
                 <li class="layui-nav-item">
                     <a href="javascript:;"><i class="fa fa-wrench"></i>系统工具</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:;" data-url="${ctx}/user/toUser" data-id="5">用户管理</a></dd>
-                        <dd><a href="javascript:;" data-url="${ctx}/resources/toResources" data-id="6">资源管理</a></dd>
-                        <dd><a href="javascript:;" data-url="datalist.html" data-id="7">角色管理</a></dd>
+                        <dd><a href="javascript:;" data-url="${ctx}/user/toUserList" data-id="5">用户管理</a></dd>
+                        <dd><a href="javascript:;" data-url="${ctx}/resources/toResourcesTree" data-id="6">资源管理</a></dd>
+                        <dd><a href="javascript:;" data-url="${ctx}/role/toRoleList" data-id="7">角色管理</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
@@ -205,8 +205,6 @@
     layui.config({
         base: '/js/'
     }).use('main');
-
-
 </script>
 </body>
 </html>

@@ -2,14 +2,15 @@ package com.demo.controller.sys;
 
 import com.demo.model.sys.Resources;
 import com.demo.service.sys.ResourcesService;
+import com.demo.utils.common.PageEntity;
+import com.demo.utils.common.Result;
 import com.demo.utils.shiro.ShiroService;
 import com.github.pagehelper.PageInfo;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -35,16 +36,28 @@ public class ResourcesController {
         return model;
     }
 
+    @RequestMapping("/toResourcesTree")
+    public ModelAndView toResourcesTree() {
+        ModelAndView model = new ModelAndView("sys/resourcesTree");
+        List<Resources> resourcesList = resourcesService.queryAll();
+        model.addObject("resourcesList",resourcesList);
+        return model;
+    }
+
     @RequestMapping("/getResourcesList")
-    public Map<String,Object> getResourcesList(@RequestParam(value = "page",defaultValue = "1") Integer page,
+    public PageEntity getResourcesList(@RequestParam(value = "page",defaultValue = "1") Integer page,
                                           @RequestParam(value = "limit",defaultValue = "10") Integer limit, Resources resources){
-        PageInfo pageInfo = resourcesService.findPage(page,limit,resources);
-        Map<String,Object> result = new HashMap<String,Object>();
-        result.put("code",0);
-        result.put("msg","");
-        result.put("count",pageInfo.getTotal());
-        result.put("data",pageInfo.getList());
-        return result;
+        PageEntity pageEntity = new PageEntity();
+        try {
+            PageInfo pageInfo = resourcesService.findPage(page, limit, resources);
+            pageEntity.setCount(pageInfo.getTotal());
+            pageEntity.setData(pageInfo.getList());
+        }catch (Exception e){
+            e.printStackTrace();
+            pageEntity.setCode(PageEntity.CODE_ERROR);
+            pageEntity.setMsg("获取资源列表出错！");
+        }
+        return pageEntity;
     }
 
     @RequestMapping("/resourcesWithSelected")
@@ -55,38 +68,73 @@ public class ResourcesController {
     @RequestMapping("/loadMenu")
     public List<Resources> loadMenu(){
         Map<String,Object> map = new HashMap<>();
-        String userid = (String) SecurityUtils.getSubject().getSession().getAttribute("userSessionId");
+        String userId = (String) SecurityUtils.getSubject().getSession().getAttribute("userSessionId");
         map.put("type","1");
-        map.put("userid",userid);
+        map.put("userId",userId);
         List<Resources> resourcesList = resourcesService.loadUserResources(map);
         return resourcesList;
     }
 
-    @CacheEvict(cacheNames="resources", allEntries=true)
-    @RequestMapping(value = "/add")
-    public String add(Resources resources){
-        try{
-            resourcesService.save(resources);
-            //更新权限
-            shiroService.updatePermission();
-            return "success";
-        }catch (Exception e){
-            e.printStackTrace();
-            return "fail";
+    @RequestMapping("/toResources")
+    public ModelAndView toResources(@RequestParam(value = "id",required = false) String id, @RequestParam(value = "isEdit",required = false) String isEdit) {
+        ModelAndView model = new ModelAndView("sys/resources");
+        Resources resources = new Resources();
+        if(StringUtils.isNotEmpty(id)){
+            resources = resourcesService.get(id);
         }
+        model.addObject("resources",resources);
+        model.addObject("isEdit",isEdit);
+        return model;
     }
 
-    @CacheEvict(cacheNames="resources", allEntries=true)
+    @RequestMapping(value = "/save")
+    public ModelAndView save(Resources resources){
+        ModelAndView model = new ModelAndView("sys/resourcesList");
+        try {
+            if(StringUtils.isNotEmpty(resources.getId())){
+                resourcesService.update(resources);
+                //更新权限
+                shiroService.updatePermission();
+            }else{
+                resourcesService.add(resources);
+                //更新权限
+                shiroService.updatePermission();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return model;
+    }
+
     @RequestMapping(value = "/delete")
-    public String delete(String id){
+    public Result delete(String id){
+        Result result = new Result();
         try{
             resourcesService.delete(id);
             //更新权限
             shiroService.updatePermission();
-            return "success";
+            return result;
         }catch (Exception e){
             e.printStackTrace();
-            return "fail";
+            result.setRetCode(Result.RECODE_ERROR);
+            result.setErrMsg("删除出错！");
+            return result;
+        }
+    }
+
+    @RequestMapping(value = "/batchDel")
+    public Result batchDel(@RequestParam(value = "ids[]")String[] ids){
+        Result result = new Result();
+        try{
+            resourcesService.batchDel(ids);
+            //更新权限
+            shiroService.updatePermission();
+            return result;
+        }catch (Exception e){
+            e.printStackTrace();
+            result.setRetCode(Result.RECODE_ERROR);
+            result.setErrMsg("批量删除出错！");
+            return result;
         }
     }
 

@@ -5,6 +5,7 @@
     <meta http-equiv="Content-Type" content="application/msword; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
     <title>Activiti Demo系统</title>
+    <link rel="shortcut icon" href="/images/Logo_40.jpg" type="image/x-icon">
     <link rel="stylesheet" href="/layui/css/layui.css"/>
     <style>
         body{margin: 10px;}
@@ -33,7 +34,7 @@
             <label class="layui-form-label">用户名：</label>
         </div>
         <div class="layui-input-inline">
-            <input type="text" name="username" lay-verify="required" style="width: 250px"  placeholder="请输入用户名" autocomplete="off" class="layui-input">
+            <input type="text" name="username" lay-verType="tips" lay-verify="required" style="width: 250px"  placeholder="请输入用户名" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="form-item">
@@ -41,7 +42,7 @@
             <label class="layui-form-label">密码：</label>
         </div>
         <div class="layui-input-inline">
-            <input type="password" name="pwd" lay-verify="required|password" style="width: 250px" placeholder="请输入密码" autocomplete="off" class="layui-input">
+            <input type="password" name="pwd" lay-verType="tips" lay-verify="required|password" style="width: 250px" placeholder="请输入密码" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="form-item">
@@ -76,7 +77,6 @@
                 data:data.field,
                 dataType:"json",
                 success:function(result){
-                    debugger;
                     if(result.retCode == 1){
                         layer.close(loading);
                         layer.msg("登录成功");

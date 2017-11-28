@@ -121,4 +121,11 @@ public class UserService {
         //删除用户角色表
         userRoleDao.deleteByUserId(userId);
     }
+
+    @Transactional
+    public void batchDel(String[] ids){
+        for (String id : ids) {
+            this.delUser(id);
+        }
+    }
 }

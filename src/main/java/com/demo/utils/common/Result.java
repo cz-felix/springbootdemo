@@ -12,6 +12,7 @@ public class Result {
     private Object data;
 
     public Result() {
+        this.retCode = Result.RECODE_SUCCESS;
     }
 
     public Result(Integer retCode,String errMsg,Object data){

@@ -38,5 +38,8 @@ spring:
     view:
       prefix: /WEB-INF/jsp/
       suffix: .jsp
+logging:
+  level:
+   com.demo.dao: debug   #打印sql
 
 

@@ -17,6 +17,7 @@ public class Resources implements Serializable{
     private String parentId;    //资源父id
     private String sort;        //排序
 
+    private String typeName;    //类型名称
     private String checked;     //是否选中
 
     public String getId() {
@@ -73,5 +74,13 @@ public class Resources implements Serializable{
 
     public void setChecked(String checked) {
         this.checked = checked;
+    }
+
+    public String getTypeName() {
+        return typeName;
+    }
+
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
     }
 }

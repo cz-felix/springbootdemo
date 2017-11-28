@@ -1,5 +1,8 @@
 package com.demo.model.sys;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -21,6 +24,8 @@ public class User implements Serializable{
     private Date createTime;        //创建时间
     private String lastUpdateNameId;//最后修改人Id
     private Date lastUpdateTime;//最后修改时间
+
+    private String statusName;  //状态名称
 
     public String getId() {
         return id;
@@ -54,6 +59,7 @@ public class User implements Serializable{
         this.pwd = pwd;
     }
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     public Date getLastLoginTime() {
         return lastLoginTime;
     }
@@ -100,5 +106,13 @@ public class User implements Serializable{
 
     public void setLastUpdateTime(Date lastUpdateTime) {
         this.lastUpdateTime = lastUpdateTime;
+    }
+
+    public String getStatusName() {
+        return statusName;
+    }
+
+    public void setStatusName(String statusName) {
+        this.statusName = statusName;
     }
 }

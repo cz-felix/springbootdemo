@@ -42,6 +42,10 @@ public class RoleService {
         return pageInfo;
     }
 
+    public Role get(String id){
+        return roleDao.get(id);
+    }
+
     @Transactional
     public void add(Role role){
         role.setId(UUIDGenerator.uuid());

@@ -13,7 +13,8 @@
         u.create_name_id AS "createNameId",
         u.create_time AS "createTime",
         u.last_update_name_id AS "lastUpdateNameId",
-        u.last_update_time as "lastUpdateTime"
+        u.last_update_time as "lastUpdateTime",
+        case when u.status = '0' then '禁止登录' else '有效' end AS "statusName"
     </sql>
 
     <sql id="joins">
