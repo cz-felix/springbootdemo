@@ -14,4 +14,5 @@ public interface UserDao {
     public void delete(String id);
     public User get(Map<String,Object> map);
     public List<User> select(User user);
+    public void updatePassword(User user);
 }

@@ -1,5 +1,7 @@
 package com.demo.model.sys;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.io.Serializable;
 
 /**
@@ -14,6 +16,9 @@ public class Role implements Serializable{
     private String name;        //角色名称
     private String roleDesc;    //角色描述
     private Integer selected;   //选中
+
+    @JSONField(name= "LAY_CHECKED")
+    private boolean layChecked;
 
     public String getId() {
         return id;
@@ -44,6 +49,21 @@ public class Role implements Serializable{
     }
 
     public void setSelected(Integer selected) {
+        if (selected != null){
+            if(1 == selected){
+                this.setLayChecked(true);
+            }else{
+                this.setLayChecked(false);
+            }
+        }
         this.selected = selected;
+    }
+
+    public boolean isLayChecked() {
+        return layChecked;
+    }
+
+    public void setLayChecked(boolean layChecked) {
+        this.layChecked = layChecked;
     }
 }

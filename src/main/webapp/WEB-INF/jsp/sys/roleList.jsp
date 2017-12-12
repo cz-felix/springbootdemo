@@ -16,7 +16,7 @@
             </div>
             <button class="layui-btn" data-type="reload">搜索</button>
             <a href="${ctx}/role/toRoleList" class="layui-btn layui-btn-warm">刷新</a>
-            <a href="${ctx}/role/toRole" style="float:right" class="layui-btn layui-btn-normal">新增资源</a>
+            <a href="${ctx}/role/toRole" style="float:right" class="layui-btn layui-btn-normal">新增角色</a>
         </div>
         <table class="layui-table" id="roleList" lay-filter="roleList"></table>
         <script type="text/html" id="barTool">
@@ -93,6 +93,36 @@
                 });
             } else if(obj.event === 'edit'){
                 window.location.href="${ctx}/role/toRole?id="+data.id;
+            }else if(obj.event === 'allocation'){
+                layer.open({
+                    type: 2,
+                    title:"权限列表",
+                    skin:"layui-layer-molv",
+                    area:['350px', '400px'],
+                    anim:2,
+                    btn:['确认选择','取消'],
+                    yes: function(index, layero){
+                        var selData = $(layero).find("iframe")[0].contentWindow.getCheckData();
+                        if (selData.length == 0) {
+                            layer.msg("请至少选择一列");
+                            return false;
+                        }
+                        var idArr = [];
+                        $.each(selData,function(i,item){
+                            idArr.push(item.value);
+                        });
+                        var ids = idArr.join();
+                        $.post("${ctx}/role/saveRoleResources", { roleId: data.id, resourcesId: ids }, function(data){
+                            if(data.retCode == 1){
+                                layer.closeAll();
+                                layer.msg("操作成功");
+                            }else{
+                                layer.msg(data.errMsg);
+                            }
+                        });
+                    },
+                    content: '${ctx}/resources/toSelResourcesTree?roleId='+data.id //这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
+                });
             }
         });
     });

@@ -9,6 +9,7 @@
 </head>
 <body>
     <div class="table-list">
+        <a href="${ctx}/resources/toResources" style="float:right" class="layui-btn layui-btn-normal">新增资源</a>
         <table class="layui-table" id="tabletree">
             <colgroup>
                 <col width="20%">
@@ -37,6 +38,6 @@
         </table>
     </div>
 <script src="/layui/layui.js"></script>
-<script type="text/javascript" src="/js/resource/gtf.js"></script>
+<script type="text/javascript" src="/js/resource/resource.js"></script>
 </body>
 </html>

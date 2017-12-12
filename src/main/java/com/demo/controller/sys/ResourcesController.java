@@ -2,6 +2,7 @@ package com.demo.controller.sys;
 
 import com.demo.model.sys.Resources;
 import com.demo.service.sys.ResourcesService;
+import com.demo.utils.common.Constant;
 import com.demo.utils.common.PageEntity;
 import com.demo.utils.common.Result;
 import com.demo.utils.shiro.ShiroService;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -60,9 +62,55 @@ public class ResourcesController {
         return pageEntity;
     }
 
+    @RequestMapping("/toSelResourcesTree")
+    public ModelAndView toSelResourcesTree(String roleId) {
+        ModelAndView model = new ModelAndView("sys/resourcesSelList");
+        model.addObject("roleId",roleId);
+        return model;
+    }
+
     @RequestMapping("/resourcesWithSelected")
-    public List<Resources> resourcesWithSelected(String roleId){
-        return resourcesService.queryResourcesListWithSelected(roleId);
+    public List<Map<String,Object>> resourcesWithSelected(String roleId){
+        List<Map<String,Object>> result = new ArrayList<Map<String, Object>>();
+        List<Resources> resourcesList = resourcesService.queryResourcesListWithSelected(roleId);
+        for (Resources resources : resourcesList) {
+            if(Constant.PARENT_NODE.equals(resources.getParentId())){
+                Map<String,Object> map = new HashMap<String,Object>();
+                List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
+                map.put("title",resources.getName());
+                map.put("value",resources.getId());
+                map.put("checked",resources.getChecked());
+                map.put("disabled",false);
+                this.recursionResources(resources.getId(),resourcesList,list);
+                map.put("data",list);
+                result.add(map);
+            }
+        }
+        return  result;
+    }
+
+    /**
+     * 递归获取资源树
+     * @param parentId
+     * @param resourcesList
+     * @param returnList
+     */
+    private void recursionResources(String parentId,List<Resources> resourcesList,List<Map<String,Object>> returnList){
+        if(resourcesList != null && resourcesList.size() > 0){
+            for (Resources resources : resourcesList) {
+                if(parentId.equals(resources.getParentId())){
+                    Map<String,Object> map = new HashMap<String,Object>();
+                    map.put("title",resources.getName());
+                    map.put("value",resources.getId());
+                    map.put("checked",resources.getChecked());
+                    map.put("disabled",false);
+                    List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
+                    this.recursionResources(resources.getId(),resourcesList,list);
+                    map.put("data",list);
+                    returnList.add(map);
+                }
+            }
+        }
     }
 
     @RequestMapping("/loadMenu")

@@ -36,8 +36,8 @@
             <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit">编辑</a>
             <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
             <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-            <a class="layui-btn layui-btn-xs" lay-event="del">修改密码</a>
-            <a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="del">分配角色</a>
+            <a class="layui-btn layui-btn-xs" lay-event="password">修改密码</a>
+            <a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="role">分配角色</a>
         </script>
     </div>
 </div>
@@ -46,7 +46,7 @@
     //JavaScript代码区域
     layui.use(['element','form','layer','jquery','carousel','util','laypage','table'], function(){
         var element = layui.element,form = layui.form,layer = layui.layer,$ = layui.$,carousel = layui.carousel,util = layui.util,
-            laypage = layui.laypage,table = layui.table;
+            laypage = layui.laypage,table = layui.table,selrole = layui.selRoleList;
 
         var active = {
             reload: function(){
@@ -145,6 +145,50 @@
                 });
             } else if(obj.event === 'edit'){
                 window.location.href="${ctx}/user/toUser?id="+data.id;
+            }else if(obj.event === 'password'){
+                if("1" == data.id){
+                    layer.msg("系统内置管理员不可修改密码！");
+                    return false;
+                }else{
+                    layer.open({
+                        type: 2,
+                        title:"修改密码",
+                        skin:"layui-layer-molv",
+                        area:['400px', '250px'],
+                        anim:2,
+                        content: '${ctx}/user/toUpdatePassword?userId='+data.id
+                    });
+                }
+            }else if(obj.event === 'role'){
+                layer.open({
+                    type: 2,
+                    title:"角色列表",
+                    skin:"layui-layer-molv",
+                    area:['600px', '400px'],
+                    anim:2,
+                    btn:['确认选择','取消'],
+                    yes: function(index, layero){
+                        var selData = $(layero).find("iframe")[0].contentWindow.getCheckData();
+                        if (selData.length == 0) {
+                            layer.msg("请至少选择一列");
+                            return false;
+                        }
+                        var idArr = [];
+                        $.each(selData,function(i,item){
+                            idArr.push(item.id);
+                        });
+                        var ids = idArr.join();
+                        $.post("${ctx}/user/saveUserRoles", { userId: data.id, roleId: ids }, function(data){
+                            if(data.retCode == 1){
+                                layer.closeAll();
+                                layer.msg("操作成功");
+                            }else{
+                                layer.msg(data.errMsg);
+                            }
+                        });
+                    },
+                    content: '${ctx}/role/toSelectRoles?userId='+data.id //这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
+                });
             }
         });
     });

@@ -79,8 +79,7 @@
         (CASE WHEN EXISTS(SELECT 1
         FROM sys_role_resources rr WHERE rr.resources_id = r.id AND rr.role_id = #{roleId,jdbcType=VARCHAR})
         THEN 'true' ELSE 'false' END) AS checked
-        FROM resources r
-        WHERE r.parentId != 0
+        FROM sys_resources r
         ORDER BY r.sort ASC
     </select>
 </mapper>

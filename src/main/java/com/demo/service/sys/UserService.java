@@ -128,4 +128,12 @@ public class UserService {
             this.delUser(id);
         }
     }
+
+    @Transactional
+    public void updatePassword(User user){
+        String userid = (String) SecurityUtils.getSubject().getSession().getAttribute("userSessionId");
+        user.setLastUpdateNameId(userid);
+        user.setLastUpdateTime(new Date());
+        userDao.updatePassword(user);
+    }
 }

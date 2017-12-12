@@ -59,7 +59,7 @@
                     <cite style="color: #FFF">${user.nickname}</cite>
                 </a>
                 <dl class="layui-nav-child">
-                    <dd><a href="javascript:;" data-id="10" data-url="page/user/userInfo.html"><i class="iconfont icon-zhanghu" data-icon="icon-zhanghu"></i><cite style="color: #0C0C0C">个人资料</cite></a></dd>
+                    <dd><a href="javascript:;" data-id="10" data-url="${ctx}/user/toUser?id=${user.id}"><i class="iconfont icon-zhanghu" data-icon="icon-zhanghu"></i><cite style="color: #0C0C0C">个人资料</cite></a></dd>
                     <dd><a href="javascript:;" data-id="11" data-url="page/user/changePwd.html"><i class="iconfont icon-shezhi1" data-icon="icon-shezhi1"></i><cite style="color: #0C0C0C">修改密码</cite></a></dd>
                 </dl>
             </li>
@@ -72,44 +72,74 @@
     <div class="layui-side">
         <div class="layui-side-scroll">
             <ul class="layui-nav layui-nav-tree" lay-filter="nav">
-                <li class="layui-nav-item layui-this">
-                    <a href="javascript:;" data-id="0"><i class="fa fa-home"></i>首页</a>
-                </li>
-                <li class="layui-nav-item">
-                    <a href="javascript:;"><i class="fa fa-tasks"></i>工作台</a>
-                    <dl class="layui-nav-child">
-                        <shiro:hasPermission name="workspace/toDoList">
-                            <dd><a href="javascript:;" data-url="${ctx}/workspace/toDoList" data-id="1">待办列表</a></dd>
+                <chen:hasAnyPermission permissions="main">
+                    <li class="layui-nav-item layui-this">
+                        <a href="javascript:;" data-id="0"><i class="fa fa-home"></i>首页</a>
+                    </li>
+                </chen:hasAnyPermission>
+                <chen:hasAnyPermission permissions="workspace/toDoList,workspace/toDoneList,workspace/toFaqiList">
+                    <li class="layui-nav-item">
+                        <a href="javascript:;"><i class="fa fa-tasks"></i>工作台</a>
+                        <dl class="layui-nav-child">
+                            <shiro:hasPermission name="workspace/toDoList">
+                                <dd><a href="javascript:;" data-url="${ctx}/workspace/toDoList" data-id="1">待办列表</a></dd>
+                            </shiro:hasPermission>
+                            <shiro:hasPermission name="workspace/toDoneList">
+                                <dd><a href="javascript:;" data-url="datalist.html" data-id="2">已审列表</a></dd>
+                            </shiro:hasPermission>
+                            <shiro:hasPermission name="workspace/toFaqiList">
+                                <dd><a href="javascript:;" data-url="datalist.html" data-id="3">发起列表</a></dd>
+                            </shiro:hasPermission>
+                        </dl>
+                    </li>
+                </chen:hasAnyPermission>
+                <shiro:hasPermission name="workspace/request">
+                    <li class="layui-nav-item">
+                        <a href="javascript:;" data-id="4" data-url="${ctx}/workspace/toDoList"><i class="fa fa-file-text"></i>新建申请</a>
+                    </li>
+                </shiro:hasPermission>
+                <chen:hasAnyPermission permissions="workspace/model,workspace/modelDef,workspace/modelDesign">
+                    <li class="layui-nav-item">
+                        <a href="javascript:;"><i class="fa fa-cog"></i>流程设置</a>
+                        <dl class="layui-nav-child">
+                            <shiro:hasPermission name="workspace/model">
+                                <dd><a href="javascript:;">模型管理</a></dd>
+                            </shiro:hasPermission>
+                            <shiro:hasPermission name="workspace/modelDef">
+                                <dd><a href="javascript:;">流程定义</a></dd>
+                            </shiro:hasPermission>
+                            <shiro:hasPermission name="workspace/modelDesign">
+                                <dd><a href="${ctx}/modeler.html?id=dasdasd">流程设计</a></dd>
+                            </shiro:hasPermission>
+                        </dl>
+                    </li>
+                </chen:hasAnyPermission>
+                <chen:hasAnyPermission permissions="user/toUserList,resources/toResourcesTree,role/toRoleList">
+                    <li class="layui-nav-item">
+                        <a href="javascript:;"><i class="fa fa-wrench"></i>系统工具</a>
+                        <dl class="layui-nav-child">
+                            <shiro:hasPermission name="user/toUserList">
+                                <dd><a href="javascript:;" data-url="${ctx}/user/toUserList" data-id="5">用户管理</a></dd>
+                            </shiro:hasPermission>
+                            <shiro:hasPermission name="resources/toResourcesTree">
+                                <dd><a href="javascript:;" data-url="${ctx}/resources/toResourcesTree" data-id="6">资源管理</a></dd>
+                            </shiro:hasPermission>
+                            <shiro:hasPermission name="role/toRoleList">
+                                <dd><a href="javascript:;" data-url="${ctx}/role/toRoleList" data-id="7">角色管理</a></dd>
+                            </shiro:hasPermission>
+                        </dl>
+                    </li>
+                </chen:hasAnyPermission>
+                <chen:hasAnyPermission permissions="role/time">
+                    <li class="layui-nav-item">
+                        <a href="javascript:;"><i class="fa fa-info-circle"></i>其他信息</a>
+                        <shiro:hasPermission name="role/time">
+                            <dl class="layui-nav-child">
+                                <dd><a href="javascript:;">事件时间点</a></dd>
+                            </dl>
                         </shiro:hasPermission>
-                        <dd><a href="javascript:;" data-url="datalist.html" data-id="2">已审列表</a></dd>
-                        <dd><a href="javascript:;" data-url="datalist.html" data-id="3">发起列表</a></dd>
-                    </dl>
-                </li>
-                <li class="layui-nav-item">
-                    <a href="javascript:;" data-id="4" data-url="${ctx}/workspace/toDoList"><i class="fa fa-file-text"></i>新建申请</a>
-                </li>
-                <li class="layui-nav-item">
-                    <a href="javascript:;"><i class="fa fa-cog"></i>流程设置</a>
-                    <dl class="layui-nav-child">
-                        <dd><a href="javascript:;">模型管理</a></dd>
-                        <dd><a href="javascript:;">流程定义</a></dd>
-                        <dd><a href="${ctx}/modeler.html?id=dasdasd">流程设计</a></dd>
-                    </dl>
-                </li>
-                <li class="layui-nav-item">
-                    <a href="javascript:;"><i class="fa fa-wrench"></i>系统工具</a>
-                    <dl class="layui-nav-child">
-                        <dd><a href="javascript:;" data-url="${ctx}/user/toUserList" data-id="5">用户管理</a></dd>
-                        <dd><a href="javascript:;" data-url="${ctx}/resources/toResourcesTree" data-id="6">资源管理</a></dd>
-                        <dd><a href="javascript:;" data-url="${ctx}/role/toRoleList" data-id="7">角色管理</a></dd>
-                    </dl>
-                </li>
-                <li class="layui-nav-item">
-                    <a href="javascript:;"><i class="fa fa-info-circle"></i>其他信息</a>
-                    <dl class="layui-nav-child">
-                        <dd><a href="javascript:;">事件时间点</a></dd>
-                    </dl>
-                </li>
+                    </li>
+                </chen:hasAnyPermission>
             </ul>
         </div>
     </div>

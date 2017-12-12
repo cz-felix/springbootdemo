@@ -38,6 +38,14 @@
         where id = #{id,jdbcType=VARCHAR}
     </update>
 
+    <update id="updatePassword" parameterType="User">
+        update sys_user
+        set pwd = #{pwd,jdbcType=VARCHAR},
+        last_update_name_id = #{lastUpdateNameId,jdbcType=VARCHAR},
+        last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+
     <!--用户禁止登录-->
     <update id="updateStatus" parameterType="java.lang.String">
         update sys_user set status = '0' where id = #{id,jdbcType=VARCHAR}

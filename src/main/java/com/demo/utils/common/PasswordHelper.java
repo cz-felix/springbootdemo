@@ -18,6 +18,11 @@ public class PasswordHelper {
 
     }
 
+    public String encryptPassword(User user,String password){
+        password = new SimpleHash(algorithmName, password,  ByteSource.Util.bytes(user.getUsername()), hashIterations).toHex();
+        return password;
+    }
+
     public static void main(String[] args) {
         PasswordHelper passwordHelper = new PasswordHelper();
         User user = new User();
