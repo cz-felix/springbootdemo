@@ -52,6 +52,11 @@ public class RoleService {
         roleDao.insert(role);
     }
 
+    @Transactional
+    public void update(Role role){
+        roleDao.update(role);
+    }
+
     @Transactional(propagation= Propagation.REQUIRED,readOnly=false,rollbackFor={Exception.class})
     public void delRole(String roleId) {
         //删除角色

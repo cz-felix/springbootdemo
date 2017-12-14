@@ -16,17 +16,16 @@
             </div>
             <button class="layui-btn" data-type="reload">搜索</button>
             <a href="${ctx}/role/toRoleList" class="layui-btn layui-btn-warm">刷新</a>
-            <a href="${ctx}/role/toRole" style="float:right" class="layui-btn layui-btn-normal">新增角色</a>
+            <button class="layui-btn layui-btn-normal" style="float:right" data-type="addRole">新增角色</button>
         </div>
         <table class="layui-table" id="roleList" lay-filter="roleList"></table>
         <script type="text/html" id="barTool">
-            <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
             <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="allocation">分配权限</a>
+            <a class="layui-btn layui-btn-xs" lay-event="allocation">分配权限</a>
         </script>
     </div>
 </div>
-<script src="/layui/layui.js"></script>
+<script src="/layui/layui.all.js"></script>
 <script type="text/javascript">
     //JavaScript代码区域
     layui.use(['element','form','layer','jquery','carousel','util','laypage','table'], function(){
@@ -40,6 +39,16 @@
                         name: $('#name').val()
                     }
                 });
+            },
+            addRole:function(){
+                layer.open({
+                    type: 2,
+                    title:"新增角色",
+                    skin:"layui-layer-molv",
+                    area:['400px', '250px'],
+                    anim:2,
+                    content: '${ctx}/role/toRole'
+                });
             }
         };
 
@@ -51,8 +60,8 @@
                 cellMinWidth: 100, //全局定义常规单元格的最小宽度，layui 2.2.1 新增
                 cols: [[
                     {fixed:'left',type:'numbers',title:'序号'},
-                    {field:'name',sort:true,title:'名称'},
-                    {field:'roleDesc',sort:true,title:'角色描述'},
+                    {field:'name',sort:true,edit: 'text',title:'名称'},
+                    {field:'roleDesc',sort:true,edit: 'text',title:'角色描述'},
                     {align:'center', toolbar:'#barTool', fixed: 'right',title:'操作'}
                 ]],
                 page: true,
@@ -62,6 +71,36 @@
             active.reload();
         }).resize();
 
+        //监听单元格编辑
+        table.on('edit(roleList)', function(obj){
+            var value = obj.value //得到修改后的值
+                ,data = obj.data //得到所在行所有键值
+                ,field = obj.field; //得到字段
+
+            var param = {};
+            param['id'] = data.id;
+            param[field] = value;
+            if(value == ''){
+                layer.msg("不可修改为空");
+                active.reload();
+                return false;
+            }
+
+            if("1" == data.id){
+                layer.msg("内置管理员不可修改");
+                active.reload();
+                return false;
+            }
+
+            $.post("${ctx}/role/update", param, function(data){
+                if(data.retCode == 1){
+                    layer.msg("修改成功");
+                }else{
+                    layer.msg(data.errMsg);
+                }
+            });
+        });
+
         $('.selTable .layui-btn').on('click', function(){
             var type = $(this).data('type');
             active[type] ? active[type].call(this) : '';
@@ -70,9 +109,12 @@
         //监听工具条
         table.on('tool(roleList)', function(obj){
             var data = obj.data;
-            if(obj.event === 'detail'){
-                window.location.href="${ctx}/role/toRole?id="+data.id;
-            } else if(obj.event === 'del'){
+            if(obj.event === 'del'){
+                if("1" == data.id){
+                    layer.msg("内置管理员不可删除");
+                    return false;
+                }
+
                 layer.confirm('确定删除？', function(index){
                     $.ajax({
                         url:'${ctx}/role/delete',
@@ -91,9 +133,11 @@
                         }
                     })
                 });
-            } else if(obj.event === 'edit'){
-                window.location.href="${ctx}/role/toRole?id="+data.id;
             }else if(obj.event === 'allocation'){
+                if("1" == data.id){
+                    layer.msg("内置管理员不可修改权限");
+                    return false;
+                }
                 layer.open({
                     type: 2,
                     title:"权限列表",
@@ -125,6 +169,10 @@
                 });
             }
         });
+
+        window.refreshList = function () {
+            active.reload();
+        }
     });
 </script>
 </body>

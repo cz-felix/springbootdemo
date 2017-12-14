@@ -21,8 +21,13 @@
     <!--修改角色信息-->
     <update id="update" parameterType="Role">
         update sys_role
-        set `name` = #{username,jdbcType=VARCHAR},
-        role_desc = #{roleDesc,jdbcType=VARCHAR}
+        <if test="roleDesc != null and roleDesc != ''">
+            set role_desc = #{roleDesc,jdbcType=VARCHAR}
+        </if>
+
+        <if test="name != null and name != ''">
+            set `name` = #{name,jdbcType=VARCHAR}
+        </if>
         where id = #{id,jdbcType=VARCHAR}
     </update>
 

@@ -80,7 +80,7 @@ public class ResourcesController {
                 map.put("title",resources.getName());
                 map.put("value",resources.getId());
                 map.put("checked",resources.getChecked());
-                map.put("disabled",false);
+                map.put("disabled","false");
                 this.recursionResources(resources.getId(),resourcesList,list);
                 map.put("data",list);
                 result.add(map);
@@ -103,7 +103,7 @@ public class ResourcesController {
                     map.put("title",resources.getName());
                     map.put("value",resources.getId());
                     map.put("checked",resources.getChecked());
-                    map.put("disabled",false);
+                    map.put("disabled","false");
                     List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
                     this.recursionResources(resources.getId(),resourcesList,list);
                     map.put("data",list);

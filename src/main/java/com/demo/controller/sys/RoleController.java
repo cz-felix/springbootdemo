@@ -73,14 +73,22 @@ public class RoleController {
     }
 
     @RequestMapping("/toRole")
-    public ModelAndView toRole(@RequestParam(value = "id",required = false) String id) {
+    public ModelAndView toRole() {
         ModelAndView model = new ModelAndView("sys/role");
-        Role role = new Role();
-        if(StringUtils.isNotEmpty(id)){
-            role = roleService.get(id);
-        }
-        model.addObject("role",role);
         return model;
+    }
+
+    @RequestMapping("/update")
+    public Result update(Role role){
+        Result result = new Result();
+        try {
+            roleService.update(role);
+        }catch (Exception e){
+            e.printStackTrace();
+            result.setErrMsg("修改角色出错！");
+            result.setRetCode(Result.RECODE_ERROR);
+        }
+        return  result;
     }
 
     @RequestMapping("/toSelectRoles")
@@ -111,24 +119,30 @@ public class RoleController {
     }
 
     @RequestMapping(value = "/add")
-    public String add(Role role) {
+    public Result add(Role role) {
+        Result result = new Result();
         try {
             roleService.add(role);
-            return "success";
+            return result;
         } catch (Exception e) {
             e.printStackTrace();
-            return "fail";
+            result.setErrMsg("新增角色出错！");
+            result.setRetCode(Result.RECODE_ERROR);
+            return result;
         }
     }
 
     @RequestMapping(value = "/delete")
-    public String delete(String id){
+    public Result delete(String id){
+        Result result = new Result();
         try{
             roleService.delRole(id);
-            return "success";
+            return result;
         }catch (Exception e){
             e.printStackTrace();
-            return "fail";
+            result.setErrMsg("删除角色出错！");
+            result.setRetCode(Result.RECODE_ERROR);
+            return result;
         }
     }
 }
