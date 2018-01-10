@@ -1,5 +1,5 @@
 server:
-  port: 9090
+  port: 9080
   jsp-servlet:
     init-parameters:
       development: true  #修改jsp页面不需要重启

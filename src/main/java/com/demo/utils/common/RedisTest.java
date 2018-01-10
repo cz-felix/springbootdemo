@@ -364,7 +364,7 @@ public class RedisTest {
 
     }
 
-    public static void main(String[] args) {
+ /*   public static void main(String[] args) {
         new RedisTest().show();
-    }
+    }*/
 }

@@ -23,12 +23,12 @@ public class PasswordHelper {
         return password;
     }
 
-    public static void main(String[] args) {
+/*    public static void main(String[] args) {
         PasswordHelper passwordHelper = new PasswordHelper();
         User user = new User();
         user.setUsername("admin");
         user.setPwd("admin");
         passwordHelper.encryptPassword(user);
         System.out.println(user);
-    }
+    }*/
 }
