@@ -1,5 +1,37 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../jsp/include/taglib.jsp"%>
+<html lang="en" class="no-js">
+<head>
+    <meta http-equiv="Content-Type" content="application/msword; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <title>Activiti Demo系统</title>
+    <link rel="shortcut icon" href="/images/Logo_40.jpg" type="image/x-icon">
+
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=PT+Sans:400,700'>
+    <link rel="stylesheet" href="/assets/css/reset.css">
+    <link rel="stylesheet" href="/assets/css/supersized.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+
+<body>
+<div class="page-container">
+    <h1>登录</h1>
+    <form action="" method="post">
+        <input type="text" name="username" class="username" placeholder="请输入用户名">
+        <input type="password" name="password" class="password" placeholder="请输入密码">
+        <button type="submit">Sign me in</button>
+        <div class="error"><span>+</span></div>
+    </form>
+</div>
+<!-- Javascript -->
+<script src="/assets/js/jquery-1.8.2.min.js"></script>
+<script src="/assets/js/supersized.3.2.7.min.js"></script>
+<script src="/assets/js/supersized-init.js"></script>
+<script src="/assets/js/scripts.js"></script>
+
+</body>
+</html>
+<%--
 <html>
 <head>
     <meta http-equiv="Content-Type" content="application/msword; charset=UTF-8">
@@ -92,4 +124,4 @@
     });
 </script>
 </body>
-</html>
+</html>--%>
