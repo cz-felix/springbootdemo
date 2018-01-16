@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../jsp/include/taglib.jsp"%>
-<html lang="en" class="no-js">
+<html>
 <head>
     <meta http-equiv="Content-Type" content="application/msword; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
@@ -17,10 +17,9 @@
 <div class="page-container">
     <h1>登录</h1>
     <form action="" method="post">
-        <input type="text" name="username" class="username" placeholder="请输入用户名">
-        <input type="password" name="password" class="password" placeholder="请输入密码">
-        <button type="submit">Sign me in</button>
-        <div class="error"><span>+</span></div>
+        <input type="text" name="username" class="username" value="admin" placeholder="请输入用户名">
+        <input type="password" name="password" class="password" value="admin" placeholder="请输入密码">
+        <button type="submit">登录</button>
     </form>
 </div>
 <!-- Javascript -->
