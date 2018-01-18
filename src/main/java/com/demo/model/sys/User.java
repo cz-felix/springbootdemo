@@ -17,7 +17,7 @@ public class User implements Serializable{
     private String id;
     private String username;         //用户名
     private String nickname;         //昵称
-    private String pwd;              //密码
+    private String password;              //密码
     private Date lastLoginTime;     //最后登录时间
     private String status;          //状态   1:有效，0:禁止登录
     private String createNameId;    //创建人id
@@ -51,12 +51,12 @@ public class User implements Serializable{
         this.username = username;
     }
 
-    public String getPwd() {
-        return pwd;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPwd(String pwd) {
-        this.pwd = pwd;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")

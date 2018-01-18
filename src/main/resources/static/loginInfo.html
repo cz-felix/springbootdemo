@@ -27,7 +27,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">密码：</label>
                 <div class="layui-input-inline">
-                    <input type="password" name="pwd" value="admin" lay-verType="tips"  lay-verify="required|pass" placeholder="请输入密码" autocomplete="off" class="layui-input">
+                    <input type="password" name="password" value="admin" lay-verType="tips"  lay-verify="required|pass" placeholder="请输入密码" autocomplete="off" class="layui-input">
                 </div>
             </div>
                 <button class="layui-btn layui-btn-lg layui-btn-danger" lay-submit lay-filter="loginForm">登录</button>
@@ -43,7 +43,7 @@
         form.on('submit(loginForm)', function(data){
             var loading = layer.load();
             $.ajax({
-                url:'/login',
+                url:'/ajaxLogin',
                 type:"POST",
                 data:data.field,
                 dataType:"json",

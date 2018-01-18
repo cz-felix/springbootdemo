@@ -7,7 +7,7 @@
         u.id as "id",
         u.username as "username",
         u.nickname as "nickname",
-        u.pwd as "pwd",
+        u.password as "password",
         u.last_login_time AS "lastLoginTime",
         u.status AS "status",
         u.create_name_id AS "createNameId",
@@ -22,8 +22,8 @@
 
     <!-- 插入数据-->
     <insert id="insert" parameterType="User">
-        insert into sys_user (id,username,nickname,pwd,last_login_time,status,create_name_id,create_time,last_update_name_id,last_update_time)
-        values (#{id,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR},#{nickname,jdbcType=VARCHAR},#{pwd,jdbcType=VARCHAR},#{lastLoginTime,jdbcType=TIMESTAMP},
+        insert into sys_user (id,username,nickname,password,last_login_time,status,create_name_id,create_time,last_update_name_id,last_update_time)
+        values (#{id,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR},#{nickname,jdbcType=VARCHAR},#{password,jdbcType=VARCHAR},#{lastLoginTime,jdbcType=TIMESTAMP},
         #{status,jdbcType=VARCHAR},#{createNameId,jdbcType=VARCHAR},#{createTime,jdbcType=TIMESTAMP},#{lastUpdateNameId,jdbcType=VARCHAR},#{lastUpdateTime,jdbcType=TIMESTAMP})
     </insert>
 
@@ -40,7 +40,15 @@
 
     <update id="updatePassword" parameterType="User">
         update sys_user
-        set pwd = #{pwd,jdbcType=VARCHAR},
+        set password = #{password,jdbcType=VARCHAR},
+        last_update_name_id = #{lastUpdateNameId,jdbcType=VARCHAR},
+        last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+
+    <update id="updateLastLoginTime" parameterType="User">
+        update sys_user
+        set last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
         last_update_name_id = #{lastUpdateNameId,jdbcType=VARCHAR},
         last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP}
         where id = #{id,jdbcType=VARCHAR}

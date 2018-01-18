@@ -32,12 +32,10 @@ public class ShiroService {
         // 权限控制map.从数据库获取
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
         filterChainDefinitionMap.put("/logout", "logout");
-        filterChainDefinitionMap.put("/diagram-viewer/**","anon");
-        filterChainDefinitionMap.put("/editor-app/**","anon");
-        filterChainDefinitionMap.put("/font-awesome/**","anon");
         filterChainDefinitionMap.put("/images/**","anon");
-        filterChainDefinitionMap.put("/js/**","anon");
         filterChainDefinitionMap.put("/layui/**","anon");
+        filterChainDefinitionMap.put("/loginInfo.html","anon");
+        filterChainDefinitionMap.put("/css/login.css","anon");
         List<Resources> resourcesList = resourcesService.queryAll();
         for(Resources resources:resourcesList){
             if (StringUtils.isNotEmpty(resources.getResUrl())) {

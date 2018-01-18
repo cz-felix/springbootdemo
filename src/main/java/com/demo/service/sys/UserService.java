@@ -136,4 +136,12 @@ public class UserService {
         user.setLastUpdateTime(new Date());
         userDao.updatePassword(user);
     }
+
+    @Transactional
+    public void  updateLastLoginTime(User user){
+        String userid = (String) SecurityUtils.getSubject().getSession().getAttribute("userSessionId");
+        user.setLastUpdateNameId(userid);
+        user.setLastUpdateTime(new Date());
+        userDao.updateLastLoginTime(user);
+    }
 }

@@ -28,17 +28,17 @@ public class LoginController{
         return model;
     }
 
-    @RequestMapping(value="/login",method=RequestMethod.POST)
-    public Result login(HttpServletRequest request, User user){
+    @RequestMapping(value="/ajaxLogin",method=RequestMethod.POST)
+    public Result ajaxLogin(HttpServletRequest request, User user){
         Result result = new Result();
         result.setRetCode(Result.RECODE_SUCCESS);
-        if (StringUtils.isEmpty(user.getUsername()) || StringUtils.isEmpty(user.getPwd())) {
+        if (StringUtils.isEmpty(user.getUsername()) || StringUtils.isEmpty(user.getPassword())) {
             result.setRetCode(Result.RECODE_ERROR);
             result.setErrMsg("用户名或密码不能为空！");
             return result;
         }
         Subject subject = SecurityUtils.getSubject();
-        UsernamePasswordToken token=new UsernamePasswordToken(user.getUsername(),user.getPwd());
+        UsernamePasswordToken token=new UsernamePasswordToken(user.getUsername(),user.getPassword());
         try {
             subject.login(token);
         }catch (LockedAccountException lae) {
@@ -58,7 +58,7 @@ public class LoginController{
     @RequestMapping(value={"/main",""})
     public ModelAndView index(HttpServletRequest request){
         ModelAndView model = new ModelAndView("main");
-        User user= (User) SecurityUtils.getSubject().getPrincipal();
+        User user = (User) SecurityUtils.getSubject().getSession().getAttribute("userSession");
         model.addObject("user",user);
         return model;
     }

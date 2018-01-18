@@ -15,4 +15,5 @@ public interface UserDao {
     public User get(Map<String,Object> map);
     public List<User> select(User user);
     public void updatePassword(User user);
+    public void  updateLastLoginTime(User user);
 }

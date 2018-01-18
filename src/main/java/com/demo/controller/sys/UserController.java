@@ -168,8 +168,8 @@ public class UserController {
             User user = userService.getById(id);
             PasswordHelper passwordHelper = new PasswordHelper();
             oldPassword = passwordHelper.encryptPassword(user,oldPassword);
-            if(oldPassword.equals(user.getPwd())){
-                user.setPwd(newPassword);
+            if(oldPassword.equals(user.getPassword())){
+                user.setPassword(newPassword);
                 passwordHelper.encryptPassword(user);
                 userService.updatePassword(user);
             }else{

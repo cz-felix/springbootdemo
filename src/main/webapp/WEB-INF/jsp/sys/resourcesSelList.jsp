@@ -5,6 +5,14 @@
     <meta http-equiv="Content-Type" content="application/msword; charset=UTF-8">
     <title>Activiti Demo系统</title>
     <link rel="stylesheet" href="/layui/css/layui.css"/>
+    <style>
+        .layui-form-checkbox span {
+            height: 7%;
+        }
+        .layui-form-checkbox[lay-skin=primary] i {
+            top:2px;
+        }
+    </style>
 </head>
 <body style="overflow: auto;">
     <form class="layui-form" action="">
