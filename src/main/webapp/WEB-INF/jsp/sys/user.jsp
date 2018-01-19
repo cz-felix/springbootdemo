@@ -26,7 +26,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">密码</label>
                 <div class="layui-input-block"style="width: 30%">
-                    <input type="password" name="pwd" value="${user.pwd}" <c:if test="${not empty user.id}">readonly</c:if> lay-verType="tips"  lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
+                    <input type="password" name="password" value="${user.password}" <c:if test="${not empty user.id}">readonly</c:if> lay-verType="tips"  lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
                 </div>
             </div>
             <div class="layui-form-item">
