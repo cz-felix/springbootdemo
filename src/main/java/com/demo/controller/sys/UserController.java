@@ -11,16 +11,10 @@ import com.github.pagehelper.PageInfo;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by chenzhi on 2017/11/11 0011.
@@ -166,11 +160,10 @@ public class UserController {
         Result result = new Result();
         try {
             User user = userService.getById(id);
-            PasswordHelper passwordHelper = new PasswordHelper();
-            oldPassword = passwordHelper.encryptPassword(user,oldPassword);
+            oldPassword = PasswordHelper.encryptPassword(oldPassword);
             if(oldPassword.equals(user.getPassword())){
                 user.setPassword(newPassword);
-                passwordHelper.encryptPassword(user);
+                PasswordHelper.encryptPassword(user);
                 userService.updatePassword(user);
             }else{
                 result.setRetCode(Result.RECODE_ERROR);

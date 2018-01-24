@@ -105,5 +105,18 @@
             ishide = false;
         }
     }
+
+    window.showModelDesign = function(id){
+        var index = layer.open({
+            id:'modelDesign',
+            type: 2,
+            area:['2000px','2000px'],
+            skin:"layui-layer-molv",
+            title:'流程设计',
+            anim:2,
+            content: '/modeler.html?modelId='+id
+        });
+        layer.full(index);
+    }
     exports('main', {});
 });

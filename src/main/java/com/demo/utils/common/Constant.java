@@ -10,4 +10,6 @@ public class Constant {
 
     public static final String PARENT_NODE = "0";           //菜单的父节点
 
+    public static final String ACTIVITI_POSTFIX = ".bpmn20.xml";
+
 }

@@ -420,7 +420,7 @@ angular.module('activitiModeler')
     					x -= 24;
     				}
         			
-        			if (morphShapes && morphShapes.length > 0) {
+        			/*if (morphShapes && morphShapes.length > 0) {
         				// In case the element is not wide enough, start the 2 bottom-buttons more to the left
         				// to prevent overflow in the right-menu
 	        			var morphButton = document.getElementById('morph-button');
@@ -432,7 +432,7 @@ angular.module('activitiModeler')
         			var deleteButton = document.getElementById('delete-button');
         			deleteButton.style.display = "block";
         			deleteButton.style.left = x + 'px';
-        			deleteButton.style.top = (shapeXY.y+bounds.height() + 2) + 'px';
+        			deleteButton.style.top = (shapeXY.y+bounds.height() + 2) + 'px';*/
         			
         			if (stencilItem && (stencilItem.canConnect || stencilItem.canConnectAssociation)) {
 	        			var quickButtonCounter = 0;

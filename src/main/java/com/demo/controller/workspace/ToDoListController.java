@@ -1,7 +1,7 @@
 package com.demo.controller.workspace;
 
-import com.demo.model.ActInBean;
-import com.demo.service.ActivitiUtil;
+import com.demo.model.activiti.ActInBean;
+import com.demo.service.activiti.ActivitiUtil;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

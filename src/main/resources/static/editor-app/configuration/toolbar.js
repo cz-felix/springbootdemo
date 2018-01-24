@@ -27,12 +27,12 @@ KISBPM.TOOLBAR_CONFIG = {
             "cssClass" : "editor-icon editor-icon-save",
             "action" : "KISBPM.TOOLBAR.ACTIONS.saveModel"
         },
-        {
+        /*{
             "type" : "separator",
             "title" : "",
             "cssClass" : "toolbar-separator"
-        },
-        {
+        },*/
+        /*{
             "type" : "button",
             "title" : "TOOLBAR.ACTION.CUT",
             "cssClass" : "editor-icon editor-icon-cut",
@@ -54,7 +54,7 @@ KISBPM.TOOLBAR_CONFIG = {
             "cssClass" : "editor-icon editor-icon-paste",
             "action" : "KISBPM.TOOLBAR.ACTIONS.paste",
             "enabled" : false
-        },
+        },*/
         {
             "type" : "button",
             "title" : "TOOLBAR.ACTION.DELETE",
@@ -63,11 +63,11 @@ KISBPM.TOOLBAR_CONFIG = {
             "enabled" : false,
             "enabledAction" : "element"
         },
-        {
+/*        {
             "type" : "separator",
             "title" : "TOOLBAR.ACTION.SAVE",
             "cssClass" : "toolbar-separator"
-        },
+        },*/
         {
             "type" : "button",
             "title" : "TOOLBAR.ACTION.REDO",
@@ -82,12 +82,12 @@ KISBPM.TOOLBAR_CONFIG = {
             "action" : "KISBPM.TOOLBAR.ACTIONS.undo",
             "enabled" : false
         },
-        {
+/*        {
             "type" : "separator",
             "title" : "TOOLBAR.ACTION.SAVE",
             "cssClass" : "toolbar-separator"
-        },
-        {
+        },*/
+        /*{
             "type" : "button",
             "title" : "TOOLBAR.ACTION.ALIGNVERTICAL",
             "cssClass" : "editor-icon editor-icon-align-vertical",
@@ -118,7 +118,7 @@ KISBPM.TOOLBAR_CONFIG = {
         	"type" : "separator",
         	"title" : "TOOLBAR.ACTION.SAVE",
         	"cssClass" : "toolbar-separator"
-        },
+        },*/
         {
             "type" : "button",
             "title" : "TOOLBAR.ACTION.ZOOMIN",
@@ -137,7 +137,7 @@ KISBPM.TOOLBAR_CONFIG = {
             "cssClass" : "editor-icon editor-icon-zoom-actual",
             "action" : "KISBPM.TOOLBAR.ACTIONS.zoomActual"
         },
-        {
+/*        {
             "type" : "button",
             "title" : "TOOLBAR.ACTION.ZOOMFIT",
             "cssClass" : "editor-icon editor-icon-zoom-fit",
@@ -147,7 +147,7 @@ KISBPM.TOOLBAR_CONFIG = {
             "type" : "separator",
             "title" : "TOOLBAR.ACTION.SAVE",
             "cssClass" : "toolbar-separator"
-        },
+        },*/
     	{
             "type" : "button",
             "title" : "TOOLBAR.ACTION.BENDPOINT.ADD",

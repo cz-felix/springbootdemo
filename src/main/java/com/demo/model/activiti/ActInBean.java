@@ -1,4 +1,4 @@
-package com.demo.model;
+package com.demo.model.activiti;
 
 import java.util.List;
 
@@ -10,6 +10,11 @@ public class ActInBean {
     private int page;
     private int limit;
 
+    private String modelName = "";
+    private String modelId;
+    private String modelKey;
+    private String modelDesc;
+
     //当前用户相关的信息
     private String userId;
     private List<String> userRoles;
@@ -17,6 +22,30 @@ public class ActInBean {
     //下面两个参数退回时使用
     private String currentTaskId;
     private String returnToTaskKey;
+
+    public String getModelName() {
+        return modelName;
+    }
+
+    public void setModelName(String modelName) {
+        this.modelName = modelName;
+    }
+
+    public String getModelId() {
+        return modelId;
+    }
+
+    public void setModelId(String modelId) {
+        this.modelId = modelId;
+    }
+
+    public String getModelKey() {
+        return modelKey;
+    }
+
+    public void setModelKey(String modelKey) {
+        this.modelKey = modelKey;
+    }
 
     public int getPage() {
         return page;
@@ -64,5 +93,13 @@ public class ActInBean {
 
     public void setReturnToTaskKey(String returnToTaskKey) {
         this.returnToTaskKey = returnToTaskKey;
+    }
+
+    public String getModelDesc() {
+        return modelDesc;
+    }
+
+    public void setModelDesc(String modelDesc) {
+        this.modelDesc = modelDesc;
     }
 }

@@ -1,6 +1,6 @@
-package com.demo.service;
+package com.demo.service.activiti;
 
-import com.demo.model.ActInBean;
+import com.demo.model.activiti.ActInBean;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.github.pagehelper.PageHelper;
