@@ -134,10 +134,10 @@
                     })
                 });
             }else if(obj.event === 'allocation'){
-                if("1" == data.id){
+                /*if("1" == data.id){
                     layer.msg("内置管理员不可修改权限");
                     return false;
-                }
+                }*/
                 layer.open({
                     type: 2,
                     title:"权限列表",

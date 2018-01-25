@@ -125,12 +125,17 @@
                         </dl>
                     </li>
                 </chen:hasAnyPermission>
-                <chen:hasAnyPermission permissions="other/time">
+                <chen:hasAnyPermission permissions="other/time,other/toTimeLineList">
                     <li class="layui-nav-item">
                         <a href="javascript:;"><i class="fa fa-info-circle"></i>其他信息</a>
                         <shiro:hasPermission name="other/time">
                             <dl class="layui-nav-child">
-                                <dd><a href="javascript:;" data-url="${ctx}/other/toTimeLine" data-id="11">事件时间点</a></dd>
+                                <dd><a href="javascript:;" data-url="${ctx}/other/toTimeLine" data-id="11">事件时间线</a></dd>
+                            </dl>
+                        </shiro:hasPermission>
+                        <shiro:hasPermission name="other/toTimeLineList">
+                            <dl class="layui-nav-child">
+                                <dd><a href="javascript:;" data-url="${ctx}/other/toTimeLineList" data-id="12">时间线管理</a></dd>
                             </dl>
                         </shiro:hasPermission>
                     </li>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.dao.other.TimeLineDao">
+
+    <!--返回实体对象-->
+    <sql id="columns">
+        t.id as "id",
+        t.title as "title",
+        t.time "time",
+        t.content as "content"
+    </sql>
+
+    <sql id="joins">
+    </sql>
+
+    <!-- 插入数据-->
+    <insert id="insert" parameterType="TimeLine">
+        insert into other_time_line (id,title,`time`,content)
+        values (#{id,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR},#{time,jdbcType=TIMESTAMP},#{content,jdbcType=BLOB})
+    </insert>
+
+    <!--修改信息-->
+    <update id="update" parameterType="TimeLine">
+        update other_time_line
+        set title = #{title,jdbcType=VARCHAR},
+        content = #{content,jdbcType=BLOB},
+        `time` = #{time ,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+
+    <!--删除-->
+    <delete id="delete" parameterType="java.lang.String">
+        DELETE from other_time_line where id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+    <!--查询人员信息-->
+    <select id="get" parameterType="java.lang.String" resultType="TimeLine">
+        SELECT <include refid="columns"/> FROM other_time_line t
+        WHERE 1 = 1
+        <if test="id != null and id != ''">
+            and t.id = #{id,jdbcType=VARCHAR}
+        </if>
+    </select>
+
+    <!--查询时间线列表-->
+    <select id="select" parameterType="TimeLine" resultType="TimeLine">
+        SELECT <include refid="columns"/> FROM other_time_line t
+        WHERE 1 = 1
+        <if test="title != null and title != ''">
+            and title LIKE CONCAT('%',#{title,jdbcType=VARCHAR}, '%')
+        </if>
+        ORDER BY `time` DESC
+    </select>
+</mapper>
