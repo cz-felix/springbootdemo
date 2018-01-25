@@ -96,7 +96,7 @@
                     {fixed: 'left',width:'8%',type:'checkbox'}
                     ,{fixed: 'left',width:'8%',type:'numbers',title:'序号'}
                     ,{field:'name',width:'22%',sort:true,title:'模型名称'}
-                    ,{field:'key',width:'20%',sort:true,title:'模型标识'}
+                    ,{field:'key',width:'22%',sort:true,title:'模型标识'}
                     ,{field:'version',width:'10%', sort:true,title:'模型版本'}
                     ,{align:'center',fixed: 'right', toolbar:'#barTool',width:'30%',title:'操作'}
                 ]],
