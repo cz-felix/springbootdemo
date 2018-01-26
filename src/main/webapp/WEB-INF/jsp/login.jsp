@@ -4,7 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="application/msword; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-    <title>Activiti Demo系统</title>
+    <title>后台Demo系统</title>
     <link rel="shortcut icon" href="/images/Logo_40.jpg" type="image/x-icon">
     <link rel="stylesheet" href="/layui/css/layui.css"/>
     <style>

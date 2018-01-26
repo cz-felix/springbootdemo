@@ -20,6 +20,7 @@
 
 var ACTIVITI = ACTIVITI || {};
 
+var domain = window.location.host;
 ACTIVITI.CONFIG = {
-	'contextRoot' : 'http://localhost',
+	'contextRoot' : 'http://'+domain,
 };

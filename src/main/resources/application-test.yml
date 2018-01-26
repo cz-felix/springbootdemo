@@ -1,0 +1,45 @@
+server:
+  port: 80
+  jsp-servlet:
+    init-parameters:
+      development: true  #修改jsp页面不需要重启
+druid:
+  jdbc:
+    driveClassName: com.mysql.jdbc.Driver
+    filters: stat,wall
+    initialSize: 1
+    jdbcUrl: jdbc:mysql://rm-bp1cq9v08og27yginpo.mysql.rds.aliyuncs.com:3306/test?useUnicode=true&characterEncoding=utf8
+    jdbcUsername: root
+    jdbcPassword: Cz190234
+    maxActive: 20
+    maxWait: 60000
+    minEvictableIdleTimeMillis: 300000
+    minIdle: 3
+    testOnBrowwon: false
+    testOnReturn: false
+    testWhileIdle: true
+    timeBetweenEvictionRunsMillis: 60000
+    validationQuery: SELECT 'x'
+mybatis:
+    mapperLocations: classpath:mapper/*.xml
+    type-aliases-package: com.demo.model
+spring:
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    timeout: 0
+    pool:
+      max-active: 20
+      max-wait: 10001
+      max-idle: 5
+      min-idle: 0
+    password:
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+logging:
+  level:
+   com.demo.dao: info   #打印sql
+
+

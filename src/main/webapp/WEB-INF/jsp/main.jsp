@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="application/msword; charset=UTF-8">
-    <title>Activiti Demo系统</title>
+    <title>后台Demo系统</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -24,7 +24,7 @@
     <div class="layui-header">
         <div class="ht-console">
             <div class="ht-user">
-                <a class="ht-user-name" href="/main"><span class="sys-title">Activiti Demo系统</span></a>
+                <a class="ht-user-name" href="/main"><span class="sys-title">后台Demo系统</span></a>
             </div>
         </div>
         <div class="ht-console">
@@ -80,7 +80,7 @@
                         <a href="javascript:;"><i class="fa fa-tasks"></i>工作台</a>
                         <dl class="layui-nav-child">
                             <shiro:hasPermission name="workspace/toDoList">
-                                <dd><a href="javascript:;" data-url="${ctx}/workspace/toDoList" data-id="1">待办列表</a></dd>
+                                <dd><a href="javascript:;" data-url="toDoList.html" data-id="1">待办列表</a></dd>
                             </shiro:hasPermission>
                             <shiro:hasPermission name="workspace/toDoneList">
                                 <dd><a href="javascript:;" data-url="datalist.html" data-id="2">已审列表</a></dd>
@@ -198,7 +198,7 @@
     </div>
     <!--底部信息-->
     <div class="layui-footer">
-        <p style="line-height:44px;text-align:center;">Activiti Demo系统 - Design By Cz丶冷颜</p>
+        <p style="line-height:44px;text-align:center;">后台Demo系统 - Design By Cz丶冷颜</p>
     </div>
     <!--个性化设置-->
     <div class="individuation animated flipOutY layui-hide">
